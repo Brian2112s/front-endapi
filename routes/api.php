@@ -7,4 +7,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/categories', [CategoryController::class, 'show']);
+Route::get('/categories', [CategoryController::class, 'index']);

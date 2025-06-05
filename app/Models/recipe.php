@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
-class recipe extends Model
+
+class Recipe extends Model
 {
     protected $table = 'recepten';
 

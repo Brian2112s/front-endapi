@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Recipe;
 
-class category extends Model
+
+class Category extends Model
 {
      protected $table = 'categorieën';
 
@@ -12,8 +14,8 @@ class category extends Model
         'category_name',
     ];
 
-    public function recepten()
+    public function recipes()
     {
-        return $this->hasMany(Recept::class);
+        return $this->hasMany(Recipe::class);
     }
 }

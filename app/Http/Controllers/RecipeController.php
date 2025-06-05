@@ -37,6 +37,9 @@ class RecipeController extends Controller
         if ($request->filled('preparation_time')) {
             $query->where('preparation_time', '<=', $request->input('preparation_time'));
         }
+        if ($request->filled('difficulty')) {
+            $query->where('difficulty', '=', $request->input('difficulty'));
+        }
 
         $results = $query->get();
 

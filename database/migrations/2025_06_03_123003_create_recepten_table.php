@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('recepten', function (Blueprint $table) {
             $table->id();
             $table->string('recipe_name');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');            $table->text('ingredients');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->text('ingredients');
             $table->text('nutritional_values');
             $table->enum('difficulty', ['easy', 'medium', 'hard']);
             $table->integer('preparation_time');
+            $table->string('image')->nullable();
         });
     }
 

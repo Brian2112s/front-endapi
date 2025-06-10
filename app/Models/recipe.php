@@ -17,6 +17,7 @@ class Recipe extends Model
         'nutritional_values',
         'difficulty',
         'preparation_time',
+        'image'
     ];
 
     public function category()

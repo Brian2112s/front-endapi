@@ -20,8 +20,6 @@ return new class extends Migration
             $table->enum('difficulty', ['easy', 'medium', 'hard']);
             $table->integer('preparation_time');
             $table->string('image')->nullable();
-            $table->text('instructions');
-
         });
     }
 

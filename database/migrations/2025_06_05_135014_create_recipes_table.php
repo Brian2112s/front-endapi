@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('recipe_name');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->text('ingredients');
-            $table->text('instructions');
             $table->text('nutritional_values');
             $table->enum('difficulty', ['easy', 'medium', 'hard']);
             $table->integer('preparation_time');
             $table->string('image')->nullable();
+            $table->text('instructions');
         });
     }
 

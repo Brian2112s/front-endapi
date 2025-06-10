@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
+
     public function up(): void
     {
         Schema::create('recipes', function (Blueprint $table) {
@@ -20,12 +19,13 @@ return new class extends Migration
             $table->enum('difficulty', ['easy', 'medium', 'hard']);
             $table->integer('preparation_time');
             $table->string('image')->nullable();
+            $table->text('instructions');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
+
+
     public function down(): void
     {
         Schema::dropIfExists('recipes');

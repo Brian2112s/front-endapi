@@ -9,7 +9,7 @@ use App\Models\Recipe;
 class RecipeController extends Controller
 {
     public function index($id){
-        $recipes = Recipe::where('category_id', $id)->get();
+          $recipes = Recipe::where('category_id', $id)->get(['recipe_name', 'image']);
         return $recipes;
     }
 

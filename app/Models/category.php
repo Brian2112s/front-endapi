@@ -8,7 +8,7 @@ use App\Models\Recipe;
 
 class Category extends Model
 {
-     protected $table = 'categorieën';
+     protected $table = 'categories';
 
         protected $fillable = [
         'category_name',

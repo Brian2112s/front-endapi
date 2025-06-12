@@ -9,16 +9,28 @@ use App\Models\Recipe;
 class RecipeController extends Controller
 {
     public function index($id){
-          $recipes = Recipe::where('category_id', $id)->get(['recipe_name', 'image']);
+        $recipes = Recipe::where('category_id', $id)->get(['id','recipe_name', 'image']);
+        
+        $recipes = $recipes->map(function ($recipe) {
+            return [
+                'id' => $recipe->id,
+                'recipe_name' => $recipe->recipe_name,
+                'image' => $recipe->image ? asset($recipe->image) : null,            ];
+        });
+        
         return $recipes;
     }
 
     public function show($id){
         $recipe = Recipe::findOrFail($id);
-        return $recipe;
+        
+        $recipeData = $recipe->toArray();
+        $recipeData['image'] = $recipe->image ? asset($recipe->image) : null;
+        
+        return $recipeData;
     }
 
-     public function search(Request $request)
+    public function search(Request $request)
     {
         $query = Recipe::query();
 

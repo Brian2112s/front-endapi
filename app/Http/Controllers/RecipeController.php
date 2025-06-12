@@ -8,7 +8,13 @@ use App\Models\Recipe;
 
 class RecipeController extends Controller
 {
-    public function index($id){
+
+    public function index(){
+        $recipes = Recipe::all();
+        return $recipes;
+    }
+
+    public function categoryrecipes($id){
         $recipes = Recipe::where('category_id', $id)->get(['id','recipe_name', 'image']);
         
         $recipes = $recipes->map(function ($recipe) {

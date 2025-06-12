@@ -14,7 +14,9 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/recipes/categories/{id}', [RecipeController::class, 'index']);
+Route::get('/recipes', [RecipeController::class, 'index']);
+
+Route::get('/recipes/categories/{id}', [RecipeController::class, 'categoryrecipes']);
 
 Route::get('/recipes/search', [RecipeController::class, 'search']);
 

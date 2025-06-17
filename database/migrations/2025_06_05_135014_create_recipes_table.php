@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->text('ingredients');
             $table->text('nutritional_values');
-            $table->enum('difficulty', ['easy', 'medium', 'hard']);
+            $table->enum('difficulty', ['makkelijk', 'gemiddeld', 'moeilijk']);
             $table->integer('preparation_time');
             $table->string('image')->nullable();
             $table->text('instructions');

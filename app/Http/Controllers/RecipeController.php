@@ -38,6 +38,7 @@ class RecipeController extends Controller
 
     public function search(Request $request)
     {
+
         $query = Recipe::query();
 
         if ($request->filled('ingredients')) {

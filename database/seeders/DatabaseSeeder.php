@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategorySeeder::class,
             ReceptSeeder::class,
-            // Add other seeders here if needed
         ]);
         User::factory()->create([
             'name' => 'Test User',

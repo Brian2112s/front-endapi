@@ -9,10 +9,14 @@ use App\Models\Recipe;
 class RecipeController extends Controller
 {
 
-    public function index(){
-        $recipes = Recipe::all();
-        return $recipes;
-    }
+public function index(Request $request)
+{
+    $limit = $request->input('limit', 9); // standaard 20
+    $recipes = Recipe::paginate($limit);
+
+    return response()->json($recipes);
+}
+
 
     public function categoryrecipes($id){
         $recipes = Recipe::where('category_id', $id)->get(['id','recipe_name', 'image']);
@@ -38,30 +42,35 @@ class RecipeController extends Controller
 
     public function search(Request $request)
     {
-
         $query = Recipe::query();
 
-        if ($request->filled('ingredients')) {
-            $query->where('ingredients', 'LIKE', '%' . $request->input('ingredients') . '%');
+        if ($request->has('recipe_name')) {
+            $query->where('recipe_name', 'LIKE', '%' . $request->recipe_name . '%');
         }
 
-        if ($request->filled('category_id')) {
-            $query->where('category_id', $request->input('category_id'));
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->category_id);
         }
 
-        if ($request->filled('recipe_name')) {
-            $query->where('recipe_name', 'LIKE', '%' . $request->input('recipe_name') . '%');
+        if ($request->has('ingredients')) {
+            $query->where('ingredients', 'LIKE', '%' . $request->ingredients . '%');
         }
 
-        if ($request->filled('preparation_time')) {
-            $query->where('preparation_time', '<=', $request->input('preparation_time'));
-        }
-        if ($request->filled('difficulty')) {
-            $query->where('difficulty', '=', $request->input('difficulty'));
+        if ($request->has('difficulty')) {
+            $query->where('difficulty', strtolower($request->difficulty)); 
         }
 
-        $results = $query->get();
+        if ($request->has('min_preparation_time')) {
+            $query->where('preparation_time', '>=', $request->min_preparation_time);
+        }
 
-        return $results;
+        if ($request->has('max_preparation_time')) {
+            $query->where('preparation_time', '<=', $request->max_preparation_time);
+        }
+
+        $limit = $request->input('limit', 20);
+        $recipes = $query->paginate($limit);
+
+        return response()->json($recipes);
     }
 }
